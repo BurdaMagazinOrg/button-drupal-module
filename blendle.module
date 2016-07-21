@@ -221,7 +221,6 @@ function blendle_entity_load(array $entities, $entity_type_id) {
  */
 function blendle_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   $route_match = \Drupal::routeMatch();
-  $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
   // Set the max age to 0 to prevent the dynamic page cache from taking over.
   $build['#cache']['max-age'] = 0;
@@ -274,7 +273,7 @@ function blendle_entity_view(array &$build, EntityInterface $entity, EntityViewD
       // then show the full content.
       $build['body']['#attributes']['id'] = 'node-' . $entity->nid->value;
 
-      if (!empty($token) && $pay_sdk->acquiredItem($token) == $entity->nid->value) {
+      if (!empty($token) && $pay_sdk->isItemAcquired($entity->nid->value, $token)) {
         // The user has access, so we bail out.
         // This is basically the version of the page that Blendle will fetch.
         // Blendles JS will replace the content with this version when you have
@@ -421,10 +420,10 @@ function _blendle_short_circuit_version() {
 function _blendle_generate_jwt($node, $rnd) {
   $url = \Drupal\Core\Url::fromUri('internal:/node/' . $node->nid->value);
   $pay_sdk = _blendle_get_sdk();
-  return $pay_sdk->getItemJwt(
+  return $pay_sdk->generateItemToken(
     $node->nid->value,
     array(
-      'title' => $node->title,
+      'title' => $node->title->value,
       'description' => '',
       'words' => $node->word_count,
       'url' => $url->setAbsolute(TRUE)->toString() . '?rnd=' . $rnd,
