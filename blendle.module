@@ -359,7 +359,7 @@ function _blendle_initialize() {
   }
 
   // Initialise the SDK.
-  $pay_sdk = new PaySDK($provider_uid, $public_key, $api_secret, $production);
+  $pay_sdk = new \BlendleButton\Client($provider_uid, $public_key, $api_secret, $production);
 
   return $pay_sdk;
 }
