@@ -17,14 +17,14 @@ use \Drupal\Component\Utility\Random;
  * Implements hook_libraries_info().
  */
 function blendle_libraries_info() {
-  $libraries['pay-with-blendle'] = array(
+  $libraries['blendle-button'] = array(
     'name' => 'Blendle Button',
     'vendor url' => 'http://pay-docs.blendle.io/',
     'download url' => 'https://s3-eu-west-1.amazonaws.com/assets-blendle/blendle-button/sdk/php/blendle-button-sdk.zip',
-    'path' => 'src/blendle',
+    'path' => 'src/BlendleButton',
     'version callback' => '_blendle_short_circuit_version',
     'files' => array(
-      'php' => array('PaySDK.php'),
+      'php' => array('client.php'),
     ),
   );
 
