@@ -352,7 +352,7 @@ function _blendle_initialize() {
   }
 
   // Require the SDK.
-  $library = libraries_load('pay-with-blendle');
+  $library = libraries_load('blendle-button');
   if (empty($library['loaded'])) {
     \Drupal::logger('blendle')->error('The Blendle SDK could not be loaded. Please check your installation.');
     return FALSE;
