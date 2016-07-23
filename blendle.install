@@ -14,23 +14,21 @@ function blendle_requirements($phase) {
   if ($phase == 'runtime') {
     $messages = array();
 
-    $t = get_t();
-
     $libraries = libraries_get_libraries();
     if (!isset($libraries['pay-with-blendle'])) {
-      $messages[] = $t('Please install the Blendle SDK. See README.txt for more information.');
+      $messages[] = t('Please install the Blendle SDK. See README.txt for more information.');
     }
 
     $api_secret = Settings::get('blendle_api_secret', NULL);
     if (empty($api_secret)) {
-      $messages[] = $t('Please setup your Blendle API secret in settings.php.');
+      $messages[] = t('Please setup your Blendle API secret in settings.php.');
     }
 
     $settings_page_url = Url::fromRoute('blendle.admin_settings_form');
 
     $provider_uid = $config->get('provider_uid');
     if (empty($provider_uid)) {
-      $messages[] = $t('Please setup your Blendle Provider UID on the <a href="!settings-page-url">settings page</a>.',
+      $messages[] = t('Please setup your Blendle Provider UID on the <a href="!settings-page-url">settings page</a>.',
         array(
           '!settings-page-url' => base_path() . $settings_page_url->getInternalPath(),
         )
@@ -39,7 +37,7 @@ function blendle_requirements($phase) {
 
     $public_key = $config->get('public_key');
     if (empty($public_key)) {
-      $messages[] = $t(
+      $messages[] = t(
         'Please setup your Blendle Public key on the <a href="!settings-page-url">settings page</a>.',
         array(
           '!settings-page-url' => base_path() . $settings_page_url->getInternalPath(),
@@ -59,8 +57,8 @@ function blendle_requirements($phase) {
       }
 
       $requirements['blendle_configuration'] = array(
-        'title' => $t('Blendle Installation'),
-        'value' => $t('Incomplete'),
+        'title' => t('Blendle Installation'),
+        'value' => t('Incomplete'),
         'description' => $errors,
         'severity' => REQUIREMENT_ERROR,
       );

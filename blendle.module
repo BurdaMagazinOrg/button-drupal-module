@@ -21,10 +21,9 @@ function blendle_libraries_info() {
     'name' => 'Blendle Button',
     'vendor url' => 'http://pay-docs.blendle.io/',
     'download url' => 'https://s3-eu-west-1.amazonaws.com/assets-blendle/blendle-button/sdk/php/blendle-button-sdk.zip',
-    'path' => 'src/BlendleButton',
     'version callback' => '_blendle_short_circuit_version',
     'files' => array(
-      'php' => array('client.php'),
+      'php' => array('src/BlendleButton/client.php', 'vendor/autoload.php'),
     ),
   );
 
