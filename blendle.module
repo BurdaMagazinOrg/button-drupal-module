@@ -389,7 +389,7 @@ function _blendle_generate_button_markup($node) {
       'data-item-jwt' => _blendle_generate_jwt($node, $rnd),
     ],
     '#value' => '',
-    '#weight' => 99,
+    '#weight' => 999,
   ];
 
   return $markup;
