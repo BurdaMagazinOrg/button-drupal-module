@@ -51,7 +51,7 @@ class AdminSettingsForm extends ConfigFormBase {
 
     $api_secret = Settings::get('blendle_api_secret', NULL);
 
-    $description = !empty($api_secret) ? t('API secret correctly setup in settings.php') : t('API secret missing. Please add the following line to your settings.php: !code', array('!code' => '<p><code>$settings[\'blendle_api_secret\'] = \'YOUR API SECRET\';</code></p>'));
+    $description = !empty($api_secret) ? t('API secret correctly setup in settings.php') : t('API secret missing. Please add the following line to your settings.php: @code', array('@code' => '<p><code>$settings[\'blendle_api_secret\'] = \'YOUR API SECRET\';</code></p>'));
     $form['api_secret'] = [
       '#type' => '#item',
       '#title' => $this->t('API Secret'),
