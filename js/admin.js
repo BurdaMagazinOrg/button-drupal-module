@@ -19,7 +19,6 @@
         attach: function (context) {
             var $context = $(context);
 
-            console.log('joeje');
             // Provide the vertical tab summaries.
             $context.find('#edit-blendle').drupalSetSummary(function (context) {
                 var vals = [];
