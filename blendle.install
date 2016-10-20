@@ -123,9 +123,6 @@ function blendle_schema() {
  * Implements hook_uninstall().
  */
 function blendle_uninstall() {
-  $config = \Drupal::config('blendle.settings');
-  $config->delete();
-
   $types = NodeType::loadMultiple();
 
   foreach ($types as $type) {
