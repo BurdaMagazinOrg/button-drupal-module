@@ -55,7 +55,18 @@ class AdminSettingsForm extends ConfigFormBase {
     $form['api_secret'] = [
       '#type' => '#item',
       '#title' => $this->t('API Secret'),
-      '#markup' => $description,
+      '#markup' => '<div>' . $description . '</div>',
+    ];
+
+    $library = libraries_load('blendle-button');
+    $message = empty($library['loaded'])
+      ? $this->t('The Blendle SDK could not be loaded. Please check your installation.')
+      : $this->t('Blendle SDK found at %path', ['%path' => $library->path]);
+
+    $form['sdk_check'] = [
+      '#type' => '#item',
+      '#title' => $this->t('Blendle button SDK check'),
+      '#markup' => '<div>' . $message . '</div>',
     ];
 
     $form['is_production'] = [

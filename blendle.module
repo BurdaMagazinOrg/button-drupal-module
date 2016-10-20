@@ -123,13 +123,13 @@ function blendle_form_node_form_alter(&$form, FormStateInterface &$form_state, $
     if ($blendle_enabled == 1) {
       if (isset($node->nid->value) && $node->nid->value > 0) {
         // Load the value from the node if we are viewing an existing node.
-        $defaults = new StdClass();
+        $defaults = new stdClass();
 
         $defaults->status = _blendle_get_status($node);
       }
       else {
         // Initialise standard values.
-        $defaults = new StdClass();
+        $defaults = new stdClass();
         $defaults->status = $blendle_default_status;
       }
 
@@ -301,13 +301,14 @@ function blendle_entity_view(array &$build, EntityInterface $entity, EntityViewD
 function blendle_library_info_build() {
   $libraries = [];
   $pay_sdk = _blendle_get_sdk();
-  $client_url = $pay_sdk->clientURL();
-  $libraries['blendle.paysdk'] = [
-    'js' => [
-       $client_url => [],
-    ]
-  ];
-
+  if ($pay_sdk) {
+    $client_url = $pay_sdk->clientURL();
+    $libraries['blendle.paysdk'] = [
+      'js' => [
+        $client_url => [],
+      ]
+    ];
+  }
   return $libraries;
 }
 
