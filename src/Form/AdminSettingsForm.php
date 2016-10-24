@@ -61,7 +61,7 @@ class AdminSettingsForm extends ConfigFormBase {
     $library = libraries_load('blendle-button');
     $message = empty($library['loaded'])
       ? $this->t('The Blendle SDK could not be loaded. Please check your installation.')
-      : $this->t('Blendle SDK found at %path', ['%path' => $library->path]);
+      : $this->t('Blendle SDK found at %path.', ['%path' => $library['library path']]);
 
     $form['sdk_check'] = [
       '#type' => '#item',
